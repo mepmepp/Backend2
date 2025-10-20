@@ -12,11 +12,11 @@ export class Attack {
         this.countUsage = this.countUsage++;
     }
 
-    getDamage() {
+    get getDamage() {
         return this.damage;
     }
 
-    getUsage() {
+    get getUsage() {
         return `${this.countUsage} / ${this.usageLimit}`;
     }
 }
