@@ -1,4 +1,4 @@
-import { Pokemon } from './pokemon.js';
+import { Pokemon } from './pokemon.ts';
 
 export class Dresseur {
     name: string;

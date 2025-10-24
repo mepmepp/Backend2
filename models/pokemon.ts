@@ -1,5 +1,5 @@
-const { verifyUnicity, pickRandomItem } = require('./functions');
-import { Attack } from './attack.js';
+import { verifyUnicity, pickRandomItem } from '../globals/functions.ts';
+import { Attack, defaultAttack } from './attack.ts';
 
 export class Pokemon {
     name: string;
@@ -7,7 +7,7 @@ export class Pokemon {
     protected lifePointsTotal: number;
     protected attacks: Attack[]; 
     
-    constructor(name: string, lifePointsTotal: number, attacks: Attack[]) {
+    constructor(name: string, lifePointsTotal: number, attacks: Attack[] = [defaultAttack]) {
         this.name = name;
         this.lifePointsTotal = lifePointsTotal;
         this.lifePoints = lifePointsTotal;
@@ -55,8 +55,8 @@ export class Pokemon {
     attack(victim: Pokemon) {
         const usedAttack = pickRandomItem(this.attacks);
         console.log(`pokemon.attack - ${this.name} is attacking ${victim.name}`);
-        victim.lifePoints -= usedAttack.getDamage();
-        console.log(`pokemon.attack - ${victim.name} took ${usedAttack.getDamage} damage. It now has ${victim.lifePoints}/${victim.lifePointsTotal}`);
+        victim.lifePoints -= usedAttack.getDamage;
+        console.log(`pokemon.attack - ${victim.name} took ${usedAttack?.getDamage} damage. It now has ${victim.lifePoints}/${victim.lifePointsTotal}`);
         return victim.lifePoints;
     }
 
@@ -78,4 +78,12 @@ export class Pokemon {
 
 }
 
-module.exports = { Pokemon };
+
+const pok1 = new Pokemon("Salamèche", 80);
+const smartAttack = new Attack('Smart Attack', 6, 30);
+const pok2 = new Pokemon("Pikachu", 60, [smartAttack]);
+console.log(pok1.getLifePointsFormatted);
+console.log(pok1.getTotalLifePoints);
+pok2.attack(pok1);
+console.log(pok1.getLifePointsFormatted);
+pok1.regainHealth();

@@ -20,3 +20,5 @@ export class Attack {
         return `${this.countUsage} / ${this.usageLimit}`;
     }
 }
+
+export const defaultAttack = new Attack("Default Attack", 5, 50);
