@@ -3,14 +3,16 @@ import { Attack, defaultAttack } from './attack.ts';
 
 export class Pokemon {
     name: string;
-    protected lifePoints: number;
-    protected lifePointsTotal: number;
+    protected health: number;
+    protected healthTotal: number;
+    protected attackStat: number;
     protected attacks: Attack[]; 
     
-    constructor(name: string, lifePointsTotal: number, attacks: Attack[] = [defaultAttack]) {
-        this.name = name;
-        this.lifePointsTotal = lifePointsTotal;
-        this.lifePoints = lifePointsTotal;
+    constructor(name: string, healthTotal: number, attackStat: number, attacks: Attack[] = [defaultAttack]) {
+        this.name = name; // db has a unique constraint for this property
+        this.healthTotal = healthTotal;
+        this.health = healthTotal;
+        this.attackStat = attackStat;
         this.attacks = attacks;
     }
 
@@ -40,8 +42,8 @@ export class Pokemon {
     // PARAMETERS : none
     // OUTPUT : void
     regainHealth() {
-        const lifeRegained = this.lifePointsTotal - this.lifePoints;
-        this.lifePoints = this.lifePointsTotal;
+        const lifeRegained = this.healthTotal - this.health;
+        this.health = this.healthTotal;
         console.log(`pokemon.regainHealth - ${this.name} ragained ${lifeRegained}`);
     }
 
@@ -51,25 +53,25 @@ export class Pokemon {
     //              - victim (Pokemon): the victim of the attack
     // OUTPUT : 
     //              - (number) 
-    //              - the lifePoints of the victim after the attack
+    //              - the health of the victim after the attack
     attack(victim: Pokemon) {
         const usedAttack = pickRandomItem(this.attacks);
         console.log(`pokemon.attack - ${this.name} is attacking ${victim.name}`);
-        victim.lifePoints -= usedAttack.getDamage;
-        console.log(`pokemon.attack - ${victim.name} took ${usedAttack?.getDamage} damage. It now has ${victim.lifePoints}/${victim.lifePointsTotal}`);
-        return victim.lifePoints;
+        victim.health -= usedAttack.getDamage;
+        console.log(`pokemon.attack - ${victim.name} took ${usedAttack?.getDamage} damage. It now has ${victim.health}/${victim.healthTotal}`);
+        return victim.health;
     }
 
-    get getLifePoints() {
-        return this.lifePoints;
+    get getHealth() {
+        return this.health;
     }    
 
-    get getTotalLifePoints() {
-        return this.lifePointsTotal;
+    get getTotalHealth() {
+        return this.healthTotal;
     }
 
-    get getLifePointsFormatted() {
-        return `${this.lifePoints} / ${this.lifePointsTotal}`;
+    get getHealthFormatted() {
+        return `${this.health} / ${this.healthTotal}`;
     }
 
     get getAttacks() {
@@ -79,11 +81,11 @@ export class Pokemon {
 }
 
 
-const pok1 = new Pokemon("Salamèche", 80);
+const pok1 = new Pokemon("Salamèche", 80, 70);
 const smartAttack = new Attack('Smart Attack', 6, 30);
-const pok2 = new Pokemon("Pikachu", 60, [smartAttack]);
-console.log(pok1.getLifePointsFormatted);
-console.log(pok1.getTotalLifePoints);
+const pok2 = new Pokemon("Pikachu", 60, 30, [smartAttack]);
+console.log(pok1.getHealthFormatted);
+console.log(pok1.getTotalHealth);
 pok2.attack(pok1);
-console.log(pok1.getLifePointsFormatted);
+console.log(pok1.getHealthFormatted);
 pok1.regainHealth();
