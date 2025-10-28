@@ -1,13 +1,16 @@
-import { Client } from 'pg';
-import dotenv from 'dotenv';
-dotenv.config();
+import { Dresseur } from "../models/dresseur.ts";
+import { getConnection } from "./config.ts";
 
-export const getConnection = () => {
-    return new Client({
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        host: process.env.HOST,
-        port: 5432,
-        database: process.env.DB,
-    });
+export const updateDresseur = async(dresseur: Dresseur) => {
+    if (!dresseur) return console.log('db_utils.insertDresseurs - Invalid request.');
+    const client = getConnection();
+    await client.connect();
+
+    try {
+
+    } catch (error) {
+        console.error(`db_utils.insertDresseurs - Error inserting ability ${dresseur}: `, error)
+    }
+
+    await client.end();
 }

@@ -2,18 +2,22 @@ import { verifyUnicity, pickRandomItem } from '../globals/functions.ts';
 import { Attack, defaultAttack } from './attack.ts';
 
 export class Pokemon {
-    name: string;
+    protected id: number;
+    protected name: string;
     protected health: number;
     protected healthTotal: number;
     protected attackStat: number;
     protected attacks: Attack[]; 
+    protected artworkUrl: string;
     
-    constructor(name: string, healthTotal: number, attackStat: number, attacks: Attack[] = [defaultAttack]) {
+    constructor(id: number, name: string, healthTotal: number, attackStat: number, attacks: Attack[] = [defaultAttack], artworkUrl: string) {
+        this.id = id;
         this.name = name; // db has a unique constraint for this property
         this.healthTotal = healthTotal;
         this.health = healthTotal;
         this.attackStat = attackStat;
         this.attacks = attacks;
+        this.artworkUrl = artworkUrl;
     }
 
     // DESC : the pokemon learns a new attack he didn't learn yet
@@ -62,6 +66,14 @@ export class Pokemon {
         return victim.health;
     }
 
+    get getId() {
+        return this.id;
+    }
+
+    get getName() {
+        return this.name;
+    }
+
     get getHealth() {
         return this.health;
     }    
@@ -74,18 +86,32 @@ export class Pokemon {
         return `${this.health} / ${this.healthTotal}`;
     }
 
+    get getAttackStat() {
+        return this.attackStat;
+    }
+
     get getAttacks() {
         return this.attacks;
     }
 
+    get getAttack1() {
+        return this.attacks[0];
+    }
+
+    get getAttack2() {
+        return this.attacks[1];
+    }
+
+    get getAttack3() {
+        return this.attacks[2];
+    }
+
+    get getArtworkUrl() {
+        return this.artworkUrl;
+    }
+
 }
 
+export const pokExemple = new Pokemon(1, "Pokemon Exemple", 70, 30, undefined, "http:/exemple.com");
+console.log(pokExemple.getAttack1);
 
-const pok1 = new Pokemon("Salamèche", 80, 70);
-const smartAttack = new Attack('Smart Attack', 6, 30);
-const pok2 = new Pokemon("Pikachu", 60, 30, [smartAttack]);
-console.log(pok1.getHealthFormatted);
-console.log(pok1.getTotalHealth);
-pok2.attack(pok1);
-console.log(pok1.getHealthFormatted);
-pok1.regainHealth();
