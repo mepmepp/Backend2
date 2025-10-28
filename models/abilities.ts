@@ -6,11 +6,11 @@ export class Ability {
     protected usageLimit: number;
     readonly countUsage: number = 0;
 
-    constructor(id: number, name: string, damage: number, usageLimit: number) {
+    constructor(id: number, name: string) {
         this.id = id;
         this.name = name;
-        this.damage = damage;
-        this.usageLimit = usageLimit;
+        this.damage = Math.floor(Math.random() * (80 - 10 + 1) + 10);
+        this.usageLimit = Math.floor(Math.random() * (50 - 10 + 1) + 10);
         this.countUsage = this.countUsage++;
     }
 
@@ -31,4 +31,4 @@ export class Ability {
     }
 }
 
-export const defaultAttack = new Ability(1, "Default Attack", 5, 50);
+export const defaultAttack = new Ability(1, "Default Attack");
