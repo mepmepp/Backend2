@@ -1,6 +1,6 @@
 import { getConnection } from './config.ts';
 import { Pokemon } from '../models/pokemon.ts';
-import type { Attack } from '../models/attack.ts';
+import type { Ability } from '../models/abilities.ts';
 import { Dresseur } from '../models/dresseur.ts';
 
 export const insertPokemons = async(pokemon: Pokemon) => {
@@ -18,7 +18,7 @@ export const insertPokemons = async(pokemon: Pokemon) => {
     await client.end();
 }
 
-export const insertAbilities = async(ability: Attack) => {
+export const insertAbilities = async(ability: Ability) => {
     if (!ability) return console.log('fixtures_utils.insertAbilities - Invalid request.');
     const client = getConnection();
     await client.connect();

@@ -1,5 +1,5 @@
 import { verifyUnicity, pickRandomItem } from '../globals/functions.ts';
-import { Attack, defaultAttack } from './attack.ts';
+import { Ability, defaultAttack } from './abilities.ts';
 
 export class Pokemon {
     protected id: number;
@@ -7,10 +7,10 @@ export class Pokemon {
     protected health: number;
     protected healthTotal: number;
     protected attackStat: number;
-    protected attacks: Attack[]; 
+    protected attacks: Ability[]; 
     protected artworkUrl: string;
     
-    constructor(id: number, name: string, healthTotal: number, attackStat: number, attacks: Attack[] = [defaultAttack], artworkUrl: string) {
+    constructor(id: number, name: string, healthTotal: number, attackStat: number, attacks: Ability[] = [defaultAttack], artworkUrl: string) {
         this.id = id;
         this.name = name; // db has a unique constraint for this property
         this.healthTotal = healthTotal;
@@ -27,7 +27,7 @@ export class Pokemon {
     //              - (boolean)
     //              - false if the attack was already learned (unique constraint)
     //              - true if the attack is learned
-    learnAttack(attack: Attack) { 
+    learnAttack(attack: Ability) { 
         console.log(`pokemon.learnAttack - ${this.name} has ${this.attacks[0]}, ${this.attacks[1]}, ${this.attacks[2]}, ${this.attacks[3]}`);
 
         if (verifyUnicity(attack, this.attacks)) {

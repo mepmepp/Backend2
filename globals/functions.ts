@@ -1,12 +1,12 @@
 // import { Pokemon } from '../models/pokemon.ts';
-import { Attack, defaultAttack } from '../models/attack.ts';
+import { Ability, defaultAttack } from '../models/abilities.ts';
 // import { Dresseur } from '../models/dresseur.ts';
 
 // DESC: Verify if a list of strings contains an element
 // PARAMETERS: 
 //              - element (string) : said element
 //              - list (string[]) : said list
-export const verifyUnicity = (element: string | Attack, list: Attack[] | string[]) => {
+export const verifyUnicity = (element: string | Ability, list: Ability[] | string[]) => {
     for (let i = 0; i <= list.length - 1; i++) {
         console.log(`functions.verifyUnicity - ${list[i]} is being evaluated`);
         if (list[i] === element) {
@@ -23,7 +23,7 @@ export const verifyUnicity = (element: string | Attack, list: Attack[] | string[
 //              - list (list)
 // OUTPUT : 
 //              - random item in the list
-export const pickRandomItem = (list: Attack[]) => {
+export const pickRandomItem = (list: Ability[]) => {
     const listItem = list[Math.floor(Math.random() * list.length)];
     if (listItem === undefined) {
         return defaultAttack;
