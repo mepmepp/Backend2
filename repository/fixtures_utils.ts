@@ -24,7 +24,8 @@ export const insertAbilities = async(ability: Ability) => {
     await client.connect();
 
     try {
-
+        console.log(`fixtures_utils.insertAbilities - Inserting -> id: ${ability.getId}; name: ${ability.getName}; damage:${ability.getDamage}; usage limit: ${ability.getUsageLimit}`);
+        await client.query('INSERT INTO abilities (id, name, damage, usage_limit) VALUES ($1, $2, $3, $4);', [ability.getId, ability.getName, ability.getDamage, ability.getUsageLimit]);
     } catch (error) {
         console.error(`fixtures_utils.insertAbilities - Error inserting ability ${ability}: `, error)
     }

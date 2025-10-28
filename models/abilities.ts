@@ -27,6 +27,10 @@ export class Ability {
     }
 
     get getUsageLimit() {
+        return this.usageLimit;
+    }
+
+    get getUsageLimitFormatted() {
         return `${this.countUsage} / ${this.usageLimit}`;
     }
 }
