@@ -6,11 +6,11 @@ export class Ability {
     protected usageLimit: number;
     readonly countUsage: number = 0;
 
-    constructor(id: number, name: string) {
+    constructor(id: number, name: string, damage: number = Math.floor(Math.random() * (80 - 10 + 1) + 10), usageLimit: number = Math.floor(Math.random() * (50 - 10 + 1) + 10)) {
         this.id = id;
         this.name = name;
-        this.damage = Math.floor(Math.random() * (80 - 10 + 1) + 10);
-        this.usageLimit = Math.floor(Math.random() * (50 - 10 + 1) + 10);
+        this.damage = damage;
+        this.usageLimit = usageLimit;
         this.countUsage = this.countUsage++;
     }
 
