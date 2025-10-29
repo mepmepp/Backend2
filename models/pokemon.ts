@@ -6,17 +6,17 @@ export class Pokemon {
     protected name: string;
     protected health: number;
     protected healthTotal: number;
-    protected attackStat: number;
-    protected attacks: Ability[]; 
+    protected attack: number;
+    protected abilities: Ability[]; 
     protected artworkUrl: string;
     
-    constructor(id: number, name: string, healthTotal: number, attackStat: number, attacks: Ability[] = [defaultAttack], artworkUrl: string) {
+    constructor(id: number, name: string, healthTotal: number, attack: number, abilities: Ability[] = [defaultAttack], artworkUrl: string) {
         this.id = id;
         this.name = name; // db has a unique constraint for this property
         this.healthTotal = healthTotal;
         this.health = healthTotal;
-        this.attackStat = attackStat;
-        this.attacks = attacks;
+        this.attack = attack;
+        this.abilities = abilities;
         this.artworkUrl = artworkUrl;
     }
 
@@ -27,16 +27,16 @@ export class Pokemon {
     //              - (boolean)
     //              - false if the attack was already learned (unique constraint)
     //              - true if the attack is learned
-    learnAttack(attack: Ability) { 
-        console.log(`pokemon.learnAttack - ${this.name} has ${this.attacks[0]}, ${this.attacks[1]}, ${this.attacks[2]}, ${this.attacks[3]}`);
+    learnAbility(attack: Ability) { 
+        console.log(`pokemon.learnAttack - ${this.name} has ${this.abilities[0]}, ${this.abilities[1]}, ${this.abilities[2]}, ${this.abilities[3]}`);
 
-        if (verifyUnicity(attack, this.attacks)) {
+        if (verifyUnicity(attack, this.abilities)) {
             console.log(`pokemon.learnAttack - ${this.name} already learned ${attack}, no need to relearn it!`);
             return false;
         }
-        this.attacks.push(attack);
-        if (this.attacks.length >= 4) {
-            this.attacks.shift();
+        this.abilities.push(attack);
+        if (this.abilities.length >= 4) {
+            this.abilities.shift();
         }
         console.log(`pokemon.learnAttack - ${this.name} learned ${attack}!`);
         return true;
@@ -58,8 +58,8 @@ export class Pokemon {
     // OUTPUT : 
     //              - (number) 
     //              - the health of the victim after the attack
-    attack(victim: Pokemon) {
-        const usedAttack = pickRandomItem(this.attacks);
+    assault(victim: Pokemon) {
+        const usedAttack = pickRandomItem(this.abilities);
         console.log(`pokemon.attack - ${this.name} is attacking ${victim.name}`);
         victim.health -= usedAttack.getDamage;
         console.log(`pokemon.attack - ${victim.name} took ${usedAttack?.getDamage} damage. It now has ${victim.health}/${victim.healthTotal}`);
@@ -86,24 +86,24 @@ export class Pokemon {
         return `${this.health} / ${this.healthTotal}`;
     }
 
-    get getAttackStat() {
-        return this.attackStat;
+    get getAttack() {
+        return this.attack;
     }
 
-    get getAttacks() {
-        return this.attacks;
+    get getAbilities() {
+        return this.abilities;
     }
 
-    get getAttack1() {
-        return this.attacks[0];
+    get getAbility1() {
+        return this.abilities[0];
     }
 
-    get getAttack2() {
-        return this.attacks[1];
+    get getAbility2() {
+        return this.abilities[1];
     }
 
-    get getAttack3() {
-        return this.attacks[2];
+    get getAbility3() {
+        return this.abilities[2];
     }
 
     get getArtworkUrl() {
@@ -113,5 +113,5 @@ export class Pokemon {
 }
 
 export const pokExemple = new Pokemon(1, "Pokemon Exemple", 70, 30, undefined, "http:/exemple.com");
-console.log(pokExemple.getAttack1);
+console.log(pokExemple.getAbility1);
 
