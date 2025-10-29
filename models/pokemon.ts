@@ -113,5 +113,5 @@ export class Pokemon {
 }
 
 export const pokExemple = new Pokemon(1, "Pokemon Exemple", 70, 30, undefined, "http:/exemple.com");
-console.log(pokExemple.getAbility1);
+pokExemple.getAbility1;
 
