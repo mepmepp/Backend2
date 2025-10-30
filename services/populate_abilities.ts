@@ -8,7 +8,7 @@ const main = async() => {
     for (let i = 1; i <= 40; i++) {
         let ability = await fetchData(abilityUrl, `/${i.toString()}`, "");
         const abilityName = ability.name.toString()[0].toUpperCase() + ability.name.slice(1);
-        console.log(`populate_attack.main - ${i}- Parsing ${abilityName}...`);
+        console.log(`populate_abbilities.main - ${i}- Parsing ${abilityName}...`);
         ability = new Ability(i, abilityName); 
         await insertAbilities(ability);
     }
