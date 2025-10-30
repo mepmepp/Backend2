@@ -40,7 +40,7 @@ export const insertPokemonsAbilities = async(pokemon: Pokemon) => {
      for (let i = 1; i <= 3; i++) {
         try {
             console.log(`fixtures_utils.insertPokemonsAbilities - Inserting -> id: ${pokemonsAbilities[i-1]?.getId}; name: ${pokemonsAbilities[i-1]?.getName}; damage:${pokemonsAbilities[i-1]?.getDamage}; usage limit: ${pokemonsAbilities[i-1]?.getUsageLimit}`);
-            await client.query(`UPDATE pokemons SET ability${i}_id = $1 WHERE id = $2;`, [i, pokemonsAbilities[i-1]?.getId]);
+            await client.query(`UPDATE pokemons SET ability${i}_id = $1 WHERE id = $2;`, [pokemonsAbilities[i-1]?.getId, pokemon.getId]);
         } catch (error) {
             console.error(`fixtures_utils.insertPokemonsAbilities - Error inserting ability n°${i} to pokemon: `, error);
         }
