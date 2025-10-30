@@ -2,6 +2,8 @@ import { getConnection } from './config.ts';
 import { Pokemon } from '../models/pokemon.ts';
 import { Ability } from '../models/abilities.ts';
 import { Dresseur } from '../models/dresseur.ts';
+import { verifyUnicityInNumberLists } from '../globals/functions.ts';
+import { verifyUnicity } from '../globals/functions.ts';
 
 export const insertPokemons = async(pokemon: Pokemon) => {
     if (!pokemon) return console.log('fixtures_utils.insertPokemons - Invalid request.');
@@ -19,12 +21,18 @@ export const insertPokemons = async(pokemon: Pokemon) => {
 }
 
 export const insertPokemonsAbilities = async(pokemon: Pokemon) => {
-    let abilitiesId = [Math.floor(Math.random() * 40), Math.floor(Math.random() * 40), Math.floor(Math.random() * 40)];
-    let pokemonsAbilities: Ability[] = [];
+    let abilitiesId;
+    while (true) {
+        abilitiesId = [Math.floor(Math.random() * 40), Math.floor(Math.random() * 40), Math.floor(Math.random() * 40)];
+        if (verifyUnicityInNumberLists(abilitiesId) && verifyUnicity(0, abilitiesId)) break;
+        console.log(`fixtures_utils.insertPokemonsAbilities - Verifications on [${abilitiesId}] failed! Reproceeding...`)
+    }
 
     const client = getConnection();
     await client.connect();
 
+    
+    let pokemonsAbilities: Ability[] = [];
     for (let i = 1; i <= 3; i++) {
         try {
             const results = await client.query("SELECT id, name, damage, usage_limit FROM abilities WHERE id = $1", [abilitiesId[i-1]]);
