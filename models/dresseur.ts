@@ -1,28 +1,51 @@
 import { Pokemon } from './pokemon.ts';
 
 export class Dresseur {
-    name: string;
-    level: number;
-    experience: number;
-    pokemons: Pokemon[];
+    protected readonly id: number;
+    private static incrementValue: number;
+    protected name: string;
+    protected level: number;
+    protected experience: number;
+    protected pokemons: Pokemon[];
     
-    constructor(name: string) {
+    constructor(name: string, level: number = 1, experience: number = 0) {
+        this.id = Dresseur.incrementValue++;
         this.name = name;
-        this.level = 1;
-        this.experience = 0;
+        this.level = level;
+        this.experience = experience;
         this.pokemons = [];
     }
 
     gainExp() {
-
+        this.experience += 10;
     }
 
-    addPokemon() {
-
+    addPokemon(pokemon: Pokemon) {
+        this.pokemons.push(pokemon);
     }
 
     treatPokemons() {
 
+    }
+
+    get getId() {
+        return this.id;
+    }
+
+    get getName() {
+        return this.name;
+    }
+
+    get getLevel() {
+        return this.level;
+    }
+
+    get getExperience() {
+        return this.experience;
+    }
+
+    get getPokemons() {
+        return this.pokemons;
     }
 
 }
