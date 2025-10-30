@@ -31,9 +31,9 @@ export const pickPokemon = async(pokemonId: number) => {
         console.log(`db_utils.pickPokemon - Picking the pokemon ${name}`);
         pokemon = new Pokemon(id, name, health, attack, undefined, artwork_url);
 
-        const ability1 = getAbilityFromDB(ability1_id);
-        const ability2 = getAbilityFromDB(ability2_id);
-        const ability3 = getAbilityFromDB(ability3_id);
+        const ability1 = getAbility(ability1_id);
+        const ability2 = getAbility(ability2_id);
+        const ability3 = getAbility(ability3_id);
 
         if (ability1 instanceof Ability) {
             pokemon.learnAbility(ability1);
@@ -56,7 +56,7 @@ export const pickPokemon = async(pokemonId: number) => {
 
 }
 
-const getAbilityFromDB = async(abilityId: number) => {
+const getAbility = async(abilityId: number) => {
     if (!abilityId) return console.log('db_utils.getAbilityFromDB - Invalid request.');
     const client = getConnection();
     await client.connect();
