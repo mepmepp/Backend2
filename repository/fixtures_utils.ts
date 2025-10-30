@@ -74,14 +74,16 @@ export const insertAbilities = async(ability: Ability) => {
 }
 
 export const insertDresseur = async(dresseur: Dresseur) => {
-    if (!dresseur) return console.log('fixtures_utils.insertDresseurs - Invalid request.');
+    if (!dresseur) return console.log('fixtures_utils.insertDresseur - Invalid request.');
     const client = getConnection();
     await client.connect();
 
     try {
+        console.log(`fixtures_utils.insertDresseur - Inserting -> id: ${dresseur.getId}; name: ${dresseur.getName}; level:${dresseur.getLevel}; experience: ${dresseur.getExperience}`);
+        await client.query('INSERT INTO dresseurs (id, name, level, experience) VALUES ($1, $2, $3, $4);', [dresseur.getId, dresseur.getName, dresseur.getLevel, dresseur.getExperience]);
 
     } catch (error) {
-        console.error(`fixtures_utils.insertDresseurs - Error inserting ability ${dresseur}: `, error)
+        console.error(`fixtures_utils.insertDresseur - Error inserting ability ${dresseur}: `, error)
     }
 
     await client.end();

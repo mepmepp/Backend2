@@ -1,4 +1,4 @@
-// import { Pokemon } from '../models/pokemon.ts';
+import { Pokemon } from '../models/pokemon.ts';
 import { Ability, defaultAttack } from '../models/abilities.ts';
 // import { Dresseur } from '../models/dresseur.ts';
 
@@ -49,3 +49,7 @@ export const pickRandomItem = (list: Ability[]) => {
     }
     return listItem;
 };
+
+export const isPokemon = (value: unknown): value is Pokemon => {
+    return value instanceof Pokemon;
+}
