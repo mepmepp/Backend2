@@ -1,6 +1,6 @@
 // Script I runned once to fill my database
 import { Pokemon } from '../models/pokemon.ts';
-import { insertAbilities, insertPokemons, insertPokemonsAbilities } from '../repository/fixtures_utils.ts';
+import { insertPokemons, insertPokemonsAbilities } from '../repository/fixtures_utils.ts';
 import { fetchData } from './api_pokemon.ts';
 
 const main = async() => {
