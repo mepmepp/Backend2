@@ -88,3 +88,23 @@ export const insertDresseur = async(dresseur: Dresseur) => {
 
     await client.end();
 }
+
+export const insertDresseurPokemons = async(dresseur: Dresseur) => {
+    if (!dresseur) return console.log('fixtures_utils.insertDresseurPokemons - Invalid request.');
+    const client = getConnection();
+    await client.connect();
+
+    const pokemons: Pokemon[] = dresseur.getPokemons;
+    console.log(pokemons);
+
+    for (let i = 0; i <= pokemons.length - 1; i++) {
+        try {
+            console.log(`fixtures_utils.insertDresseurPokemons - Inserting pokemons of ${dresseur.getName}-> ${pokemons[i]?.getName}`);
+            await client.query('INSERT INTO dresseur_pokemons (dresseur_id, pokemon_id) VALUES ($1, $2);', [dresseur.getId, pokemons[i]?.getId]);
+        } catch (error) {
+            console.error(`fixtures_utils.insertDresseurPokemons - Error inserting pokemon ${pokemons[i]?.getName} to dresseur ${dresseur.getName}: `, error)
+        }
+    }
+
+    await client.end();
+}

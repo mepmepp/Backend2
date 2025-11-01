@@ -2,12 +2,17 @@ import { Dresseur } from "../models/dresseur.ts";
 import { Pokemon } from "../models/pokemon.ts";
 import { pickPokemon } from "../repository/db_utils.ts";
 import { isPokemon } from "../globals/functions.ts";
+import { insertDresseur, insertDresseurPokemons } from "../repository/fixtures_utils.ts";
 
 
 
 const main = async() => {
     const Jacques = await createDresseur("Jacques");
+    await insertDresseur(Jacques);
+    await insertDresseurPokemons(Jacques);
     const Clementine = await createDresseur("Clémentine");
+    await insertDresseur(Clementine);
+    await insertDresseurPokemons(Clementine);
 
 }
 

@@ -2,7 +2,7 @@ import { Pokemon } from './pokemon.ts';
 
 export class Dresseur {
     protected readonly id: number;
-    private static incrementValue: number;
+    private static incrementValue: number = 1;
     protected name: string;
     protected level: number;
     protected experience: number;
