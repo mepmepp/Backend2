@@ -95,7 +95,6 @@ export const insertDresseurPokemons = async(dresseur: Dresseur) => {
     await client.connect();
 
     const pokemons: Pokemon[] = dresseur.getPokemons;
-    console.log(pokemons);
 
     for (let i = 0; i <= pokemons.length - 1; i++) {
         try {
