@@ -7,16 +7,16 @@ export class Pokemon {
     protected health: number;
     protected healthTotal: number;
     protected attack: number;
-    protected abilities: Ability[] = [defaultAttack]; 
+    protected abilities: Ability[]; 
     protected artworkUrl: string;
     
-    constructor(id: number, name: string, healthTotal: number, attack: number, artworkUrl: string) {
+    constructor(id: number, name: string, healthTotal: number, attack: number, artworkUrl: string, abilities = [defaultAttack]) {
         this.id = id;
         this.name = name; // db has a unique constraint for this property
         this.healthTotal = healthTotal;
         this.health = healthTotal;
         this.attack = attack;
-        // this.abilities = abilities;
+        this.abilities = abilities;
         this.artworkUrl = artworkUrl;
     }
 
@@ -44,7 +44,7 @@ export class Pokemon {
     assault(victim: Pokemon) {
         const usedAttack = pickRandomAbility(this.abilities);
         // console.log(`pokemon.attack - ${this.name} is attacking ${victim.name}`);
-        victim.health -= usedAttack.getDamage * Math.random() * 3;
+        victim.health -= Math.floor((usedAttack.getDamage * Math.random() * 0.9) + (this.getAttack * Math.random() * 0.1));
         // console.log(`pokemon.attack - ${victim.name} took ${usedAttack?.getDamage} damage. It now has ${victim.health} / ${victim.healthTotal}hp.`);
         return victim.health;
     }
