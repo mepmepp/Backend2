@@ -1,9 +1,8 @@
 import type { Request, Response } from 'express';
-import { getFightNummer, isPokemon, pickRandomNumber, pickRandomPokemon, setSpecificTimeout, wait } from '../globals/functions.ts';
+import { getFightNummer, isPokemon, pickRandomNumber, wait } from '../globals/functions.ts';
 import { Dresseur } from '../models/dresseur.ts';
 import { getDresseur, getDresseurPokemonsId, pickPokemon } from '../repository/db_utils.ts';
 import { Pokemon } from '../models/pokemon.ts';
-import { log } from 'console';
 
 export const randomChallenge = async(request: Request, response: Response) => {
     const userDresseurId = request.query.dresseur as string | undefined;
