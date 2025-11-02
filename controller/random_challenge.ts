@@ -45,15 +45,6 @@ export const randomChallenge = async(request: Request, response: Response) => {
     if (isPokemon(futureUserPokemon)) userPokemon = futureUserPokemon;
     else return console.log(`random_challenge.randomChallenge - An error occured while assigning the user his random pokemon.`)
 
-    // let enemyPokemon: Pokemon;
-    // let enemyPokemonsId: number[] = [];
-    // let futureEnemyPokemon;
-
-    // if (enemyDresseur instanceof Dresseur) enemyPokemonsId = await getDresseurPokemonsId(enemyDresseur.getId);
-    // futureEnemyPokemon = pickRandomNumber(enemyPokemonsId);
-    // if (isPokemon(futureEnemyPokemon)) enemyPokemon = futureEnemyPokemon;
-    // else return console.log(`random_challenge.randomChallenge - An error occured while assigning the enemy his random pokemon.`);
-
     let enemyPokemon: Pokemon;
     let enemyPokemonId: number;
     let enemyPokemonsId: number[] = [];
