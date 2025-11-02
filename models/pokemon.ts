@@ -20,13 +20,6 @@ export class Pokemon {
         this.artworkUrl = artworkUrl;
     }
 
-    // DESC : the pokemon learns a new attack he didn't learn yet
-    // PARAMETERS :
-    //              - attack (string) : attack that the pokemon learns
-    // OUTPUT :
-    //              - (boolean)
-    //              - false if the attack was already learned (unique constraint)
-    //              - true if the attack is learned
     learnAbility(attack: Ability) { 
         console.log(`pokemon.learnAttack - ${this.name} has ${this.abilities[0]}, ${this.abilities[1]}, ${this.abilities[2]}, ${this.abilities[3]}`);
 
@@ -42,22 +35,12 @@ export class Pokemon {
         return true;
     }
 
-    // DESC : method that heals the pokemon
-    // PARAMETERS : none
-    // OUTPUT : void
     regainHealth() {
         const lifeRegained = this.healthTotal - this.health;
         this.health = this.healthTotal;
         // console.log(`pokemon.regainHealth - ${this.name} ragained ${lifeRegained}`);
     }
 
-
-    // DESC : the pokemon attacks another, thus lowering down its health
-    // PARAMETERS : 
-    //              - victim (Pokemon): the victim of the attack
-    // OUTPUT : 
-    //              - (number) 
-    //              - the health of the victim after the attack
     assault(victim: Pokemon) {
         const usedAttack = pickRandomAbility(this.abilities);
         // console.log(`pokemon.attack - ${this.name} is attacking ${victim.name}`);

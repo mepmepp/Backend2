@@ -1,12 +1,7 @@
 import { Pokemon } from '../models/pokemon.ts';
 import { Ability, defaultAttack } from '../models/abilities.ts';
 import { Dresseur } from '../models/dresseur.ts';
-// import { Dresseur } from '../models/dresseur.ts';
 
-// DESC: Verify if a list of strings contains an element
-// PARAMETERS: 
-//              - element (string) : said element
-//              - list (string[]) : said list
 export const verifyUnicity = (element: string | Ability | number, list: Ability[] | string[] | number[]) => {
     for (let i = 0; i <= list.length - 1; i++) {
         console.log(`functions.verifyUnicity - ${list[i]} is being evaluated`);
@@ -38,11 +33,6 @@ export const verifyIfNumberListContains = (list: number[], number: number) => {
 
 }
 
-// DESC: pick a random item in a list, no matter the type of the list item
-// PARAMETERS : 
-//              - list (list)
-// OUTPUT : 
-//              - random item in the list
 export const pickRandomAbility = (list: Ability[]) => {
     const listItem = list[Math.floor(Math.random() * list.length)];
     if (listItem === undefined) {
