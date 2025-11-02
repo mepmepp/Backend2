@@ -24,8 +24,10 @@ const main = () => {
         <p><b>Hint</b>: You can choose between 1 and 2.</p>
         <h3>First Arena:</h3>
         <p>/first-arena</p>
+        <p><b>Hint</b>: You can choose between 1 and 2.</p>
         <h3>Second Arena:</h3>
-        <p>/second-arena</p>`));
+        <p>/second-arena</p>
+        <p><b>Hint</b>: You can choose between 1 and 2.</p>`));
 
     app.get('/random-challenge', (request, response) => randomChallenge(request, response));
     app.get('/deterministic-challenge', (request, response) => deterministicChallenge(request, response));
