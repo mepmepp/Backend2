@@ -85,9 +85,9 @@ export const randomChallenge = async(request: Request, response: Response) => {
         let enemyPokemonDeathCounter: number = 0;
 
         for (let i = 1; i <= 100; i++) {
+            console.log('\x1b[33m%s\x1b[0m', `Ready for the ${getFightNummer(i)} round?`);
             while (userPokemon.getHealth > 0 && enemyPokemon.getHealth > 0) {
                 await wait();
-                console.log('\x1b[33m%s\x1b[0m', `Ready for the ${getFightNummer(i)} round?`);
                 userPokemon.assault(enemyPokemon);
                 await wait();
                 console.log(`You attacked ${enemyDresseur.getName}'s pokemon.`);
