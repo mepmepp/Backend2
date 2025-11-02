@@ -43,14 +43,15 @@ export const deterministicChallenge = async(request: Request, response: Response
     }
 
     if (!isPokemon(userBetterPokemon)) return console.log(`deterministic_challenge.deterministicChallenge - An error occured while assigning the user his random pokemon.`);
+    userPokemon = userBetterPokemon;
 
-    let enemyPokemon: Pokemon | undefined;
+    let enemyPokemon: Pokemon;
     let enemyPokemonsId: number[] = [];
     if (enemyDresseur instanceof Dresseur) enemyPokemonsId = await getDresseurPokemonsId(enemyDresseur.getId);
     else return console.log("deterministic_challenge.deterministicChallenge - An error occured while getting the enemy dresseur.");
 
     betterHealth = 0;
-    let enemyBetterPokemon: Pokemon | undefined;
+    let enemyBetterPokemon: Pokemon;
     for (let i = 0; i <= userPokemonsId.length - 1; i++) {
         if (typeof enemyPokemonsId[i] === "number") {
             const pokemonBeingParsed = await pickPokemon(enemyPokemonsId[i]!);
@@ -63,10 +64,10 @@ export const deterministicChallenge = async(request: Request, response: Response
         }
     }
 
-    if (!isPokemon(enemyBetterPokemon)) return console.log(`deterministic_challenge.deterministicChallenge - An error occured while assigning the user his random pokemon.`)
-//
+    if (!isPokemon(enemyBetterPokemon!)) return console.log(`deterministic_challenge.deterministicChallenge - An error occured while assigning the user his random pokemon.`)
+    enemyPokemon = enemyBetterPokemon;
 
-    if (enemyDresseur instanceof Dresseur && userPokemon instanceof Pokemon && enemyPokemon instanceof Pokemon) {
+    if ((userDresseur && enemyDresseur) instanceof Dresseur && (userPokemon && enemyPokemon) instanceof Pokemon) {
         await wait();
         console.log(`Hello \x1b[33m${userDresseur.getName}\x1b[0m.`);
         await wait();
