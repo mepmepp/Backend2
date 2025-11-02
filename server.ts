@@ -20,14 +20,15 @@ const main = () => {
         <p>/random-challenge?dresseur={dresseur-id}</p>
         <p><b>Hint</b>: You can choose between 1 and 2.</p>
         <h3>Deterministic Challenge:</h3>
-        <p>/deterministic-challenge</p>
+        <p>/deterministic-challenge?dresseur={dresseur-id}</p>
+        <p><b>Hint</b>: You can choose between 1 and 2.</p>
         <h3>First Arena:</h3>
         <p>/first-arena</p>
         <h3>Second Arena:</h3>
         <p>/second-arena</p>`));
 
     app.get('/random-challenge', (request, response) => randomChallenge(request, response));
-    app.get('deterministic-challenge', (request, response) => deterministicChallenge(request, response));
+    app.get('/deterministic-challenge', (request, response) => deterministicChallenge(request, response));
     app.get('/first-arena', (request, response) => firstArena(request, response));
     app.get('/second-arena', (request, response) => secondArena(request, response));
 }
