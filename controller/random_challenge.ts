@@ -61,7 +61,7 @@ export const randomChallenge = async(request: Request, response: Response) => {
     else return console.log(`random_challenge.randomChallenge - An error occured while assigning the enemy his random pokemon.`)
 
 
-    if (enemyDresseur instanceof Dresseur && userPokemon instanceof Pokemon && enemyPokemon instanceof Pokemon) {
+    if ((userDresseur && enemyDresseur) instanceof Dresseur && (userPokemon && enemyPokemon) instanceof Pokemon) {
         await wait();
         console.log(`Hello \x1b[33m${userDresseur.getName}\x1b[0m.`);
         await wait();
