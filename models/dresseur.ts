@@ -1,15 +1,16 @@
 import { Pokemon } from './pokemon.ts';
 
 export class Dresseur {
-    protected readonly id: number;
+    protected id: number;
+    // protected readonly id: number;
     private static incrementValue: number = 1;
     protected name: string;
     protected level: number;
     protected experience: number;
     protected pokemons: Pokemon[];
     
-    constructor(name: string, level: number = 1, experience: number = 0) {
-        this.id = Dresseur.incrementValue++;
+    constructor(id: number = Dresseur.incrementValue++, name: string, level: number = 1, experience: number = 0) {
+        this.id = id;
         this.name = name;
         this.level = level;
         this.experience = experience;

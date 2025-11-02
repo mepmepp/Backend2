@@ -13,7 +13,7 @@ const main = async() => {
         const pokemonHealth = pokemon.stats[0].base_stat;
         const pokemonAttack = pokemon.stats[1].base_stat;
         console.log(`populate_pokemon.main - ${i}- Parsing ${pokemonName}... Health: ${pokemonHealth}. Attack: ${pokemonAttack}`);
-        pokemon = new Pokemon(i, pokemonName, pokemonHealth, pokemonAttack, undefined , `${pokemonArtworkUrl}${i}.png`);
+        pokemon = new Pokemon(i, pokemonName, pokemonHealth, pokemonAttack, `${pokemonArtworkUrl}${i}.png`);
         await insertPokemons(pokemon);
         await insertPokemonsAbilities(pokemon);
     }

@@ -1,4 +1,4 @@
-import { verifyUnicity, pickRandomItem } from '../globals/functions.ts';
+import { verifyUnicity, pickRandomAbility } from '../globals/functions.ts';
 import { Ability, defaultAttack } from './abilities.ts';
 
 export class Pokemon {
@@ -7,16 +7,16 @@ export class Pokemon {
     protected health: number;
     protected healthTotal: number;
     protected attack: number;
-    protected abilities: Ability[]; 
+    protected abilities: Ability[] = [defaultAttack]; 
     protected artworkUrl: string;
     
-    constructor(id: number, name: string, healthTotal: number, attack: number, abilities: Ability[] = [defaultAttack], artworkUrl: string) {
+    constructor(id: number, name: string, healthTotal: number, attack: number, artworkUrl: string) {
         this.id = id;
         this.name = name; // db has a unique constraint for this property
         this.healthTotal = healthTotal;
         this.health = healthTotal;
         this.attack = attack;
-        this.abilities = abilities;
+        // this.abilities = abilities;
         this.artworkUrl = artworkUrl;
     }
 
@@ -48,7 +48,7 @@ export class Pokemon {
     regainHealth() {
         const lifeRegained = this.healthTotal - this.health;
         this.health = this.healthTotal;
-        console.log(`pokemon.regainHealth - ${this.name} ragained ${lifeRegained}`);
+        // console.log(`pokemon.regainHealth - ${this.name} ragained ${lifeRegained}`);
     }
 
 
@@ -59,10 +59,10 @@ export class Pokemon {
     //              - (number) 
     //              - the health of the victim after the attack
     assault(victim: Pokemon) {
-        const usedAttack = pickRandomItem(this.abilities);
-        console.log(`pokemon.attack - ${this.name} is attacking ${victim.name}`);
-        victim.health -= usedAttack.getDamage;
-        console.log(`pokemon.attack - ${victim.name} took ${usedAttack?.getDamage} damage. It now has ${victim.health}/${victim.healthTotal}`);
+        const usedAttack = pickRandomAbility(this.abilities);
+        // console.log(`pokemon.attack - ${this.name} is attacking ${victim.name}`);
+        victim.health -= usedAttack.getDamage * Math.random() * 3;
+        // console.log(`pokemon.attack - ${victim.name} took ${usedAttack?.getDamage} damage. It now has ${victim.health} / ${victim.healthTotal}hp.`);
         return victim.health;
     }
 
@@ -112,6 +112,6 @@ export class Pokemon {
 
 }
 
-export const pokExemple = new Pokemon(1, "Pokemon Exemple", 70, 30, undefined, "http:/exemple.com");
+export const pokExemple = new Pokemon(1, "Pokemon Exemple", 70, 30, "http:/exemple.com");
 pokExemple.getAbility1;
 
