@@ -5,21 +5,34 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_OPTIONS='--import tsx' jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@swc/core": "^1.15.0",
+    "@swc/jest": "^0.2.39",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "mongoose": "^8.19.2",
     "pg": "^8.16.3",
+    "supertest": "^7.1.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.28.5",
     "@types/express": "^5.0.5",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.8.1",
-    "@types/pg": "^8.15.5"
+    "@types/pg": "^8.15.6",
+    "@types/supertest": "^6.0.3",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
+    "ts-jest": "^29.4.5"
   }
 }
