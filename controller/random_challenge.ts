@@ -22,7 +22,7 @@ export const randomChallenge = async(request: Request, response: Response) => {
     }
     else {
         console.log("Invalid dresseur ID. This dresseur doesn't exist.");
-        return response.status(400).send("<h1>Invalid dresseur ID. This dresseur doesn't exist.</h1>");
+        return response.status(404).send("<h1>Invalid dresseur ID. This dresseur doesn't exist.</h1>");
     }
 
     let enemyDresseur;

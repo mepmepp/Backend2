@@ -43,6 +43,7 @@ export class Pokemon {
 
     assault(victim: Pokemon) {
         const usedAttack = pickRandomAbility(this.abilities);
+        if (usedAttack.getUsageLimit <= 0) return victim.health;
         // console.log(`pokemon.attack - ${this.name} is attacking ${victim.name}`);
         victim.health -= Math.floor((usedAttack.getDamage * Math.random() * 0.9) + (this.getAttack * Math.random() * 0.1));
         // console.log(`pokemon.attack - ${victim.name} took ${usedAttack?.getDamage} damage. It now has ${victim.health} / ${victim.healthTotal}hp.`);
